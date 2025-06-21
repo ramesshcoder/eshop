@@ -1,3 +1,5 @@
+import { StringToken } from "@angular/compiler"
+
 export interface SignUp{
     name:string,
     password:string,
@@ -5,6 +7,15 @@ export interface SignUp{
     number:number
 }
 export interface login{
-    name:string,
+    email:string,
     password:string
+}
+export interface products{
+    name:string,
+    price:number,
+    color:string,
+    category:string,
+    description:string,image:string,
+    id:string
+
 }

@@ -3,17 +3,22 @@ import { Injectable } from '@angular/core';
 import { login, SignUp } from '../data-type';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SellerService {
-private baseurl='http://localhost:3000/seller'
-  constructor( private http:HttpClient) { }
- addSeller(data:SignUp){
-  return this.http.post(this.baseurl,data)
- }
- userLogin(val:login){
-  console.warn(val)
-  this.http.get('http://localhost:3000/seller?email=${val.email}&password=${val.password}')
+  private baseurl = 'http://localhost:3000/seller';
 
- }
+  constructor(private http: HttpClient) {}
+
+  // Sign Up
+  addSeller(data: SignUp) {
+    return this.http.post(this.baseurl, data);
+  }
+
+  // Login (Now returns observable)
+  userLogin(val: login) {
+    return this.http.get(this.baseurl + `?email=${val.email}&password=${val.password}`, {
+      observe: 'response'
+    });
+  }
 }

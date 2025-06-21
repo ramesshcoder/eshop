@@ -1,0 +1,21 @@
+h1{
+    margin-top: 10px;
+    text-align: center;
+}
+table{
+    
+    margin: 5% 15% 5%;
+    text-align: left;
+    color: black;
+    border-collapse: collapse;
+
+}
+table td,table th{
+    border: 1px solid black;
+    padding: 10px;
+    min-width: 160px;
+}
+img{
+    height: 100px;
+    width: 100px;
+}

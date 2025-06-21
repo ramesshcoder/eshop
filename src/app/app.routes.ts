@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SellerHomeComponent } from './seller-home/seller-home.component';
 import { authGuard } from './auth.guard';
+import { SellerAddProductsComponent } from './seller-add-products/seller-add-products.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +22,10 @@ export const routes: Routes = [
     },
     {
         path:'seller-home',component:SellerHomeComponent,
+        canActivate:[authGuard]
+    },
+    {
+        path:'seller-add-products',component:SellerAddProductsComponent,
         canActivate:[authGuard]
     }
 ];
