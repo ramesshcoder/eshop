@@ -2,10 +2,15 @@ import { Component, resource } from '@angular/core';
 import { ProductsService } from '../service/products.service';
 import { products } from '../data-type';
 import { NgFor } from '@angular/common';
+import { faTrash,faPenToSquare } from '@fortawesome/free-solid-svg-icons'; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-seller-home',
-  imports: [NgFor],
+  imports: [NgFor,FontAwesomeModule,RouterModule],
   templateUrl: './seller-home.component.html',
   styleUrl: './seller-home.component.css'
 })

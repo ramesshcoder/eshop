@@ -21,7 +21,13 @@
         <td>{{ item.color }}</td>
         <td>{{ item.category }}</td>
         <td>{{ item.description }}</td>
-        <td><button (click)="deleteProduct(item.id)">delete</button></td>
+        <td>
+          <button (click)="deleteProduct(item.id)">
+          <i class="fa-solid fa-trash " style="font-size: 30px "></i>
+
+        </button>
+      <button [routerLink]="['/update', item.id]">Update</button></td>
+       
        
       </tr>
     </tbody>

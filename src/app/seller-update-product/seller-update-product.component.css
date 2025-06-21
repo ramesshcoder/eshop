@@ -1,0 +1,47 @@
+.update-products{
+     width: 500px;
+   margin: auto;
+   margin-top:3em;
+  
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+.update-products form{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.update-products h1{
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+.update-products input{
+     width: 70%;
+    margin: auto;
+    margin-bottom: 1%;
+    padding: 2%;
+    border-radius: 5px;
+}
+.update-products textarea{width: 70%;
+    margin: auto;
+    margin-bottom: 2%;
+    padding: 2%;
+    border-radius: 5px;
+    
+}
+.update-products button{
+     width: 70%;
+    margin: auto;
+    margin-bottom: 2%;
+    padding: 2%;
+    border-radius: 5px;
+}
+p{
+    color: green;
+    text-align: center;
+    margin-bottom: 10%;
+}
