@@ -8,6 +8,7 @@ import { SellerHomeComponent } from './seller-home/seller-home.component';
 import { authGuard } from './auth.guard';
 import { SellerAddProductsComponent } from './seller-add-products/seller-add-products.component';
 import { SellerUpdateProductComponent } from './seller-update-product/seller-update-product.component';
+import { SearchComponent } from './search/search.component';
 
 export const routes: Routes = [
   {
@@ -42,4 +43,7 @@ export const routes: Routes = [
     component: SellerAddProductsComponent,
     canActivate: [authGuard],
   },
+  {
+    path:'saerch/:query',component:SearchComponent
+  }
 ];

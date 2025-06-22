@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { NgIf, NgSwitch, NgSwitchCase, TitleCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ProductsService } from '../service/products.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,7 @@ export class HeaderComponent {
   menuType: string = 'default';
   sellerName: string = '';
 
-  constructor(private route: Router) {
+  constructor(private route: Router,private product :ProductsService) {
     this.route.events.subscribe((val: any) => {
       if (val instanceof NavigationEnd) {
         if (localStorage.getItem('seller') && val.url.includes('seller')) {
@@ -35,4 +36,21 @@ export class HeaderComponent {
     localStorage.removeItem('seller');
     this.route.navigate(['/']);
   }
+ searchProducts(query: KeyboardEvent) {
+  const element = query.target as HTMLInputElement;
+  const searchTerm = element.value.trim();
+
+  if (searchTerm) {
+    this.product.searchProducts(searchTerm).subscribe({
+      next: (result) => {
+        console.log("Search result:", result);
+      },
+      error: (err) => {
+        console.error("Error fetching search results", err);
+      }
+    });
+  }
+}
+
+
 }

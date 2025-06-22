@@ -1,1 +1,39 @@
-<p>home works!</p>
+@if (images) {
+<ngb-carousel>
+  <ng-template ngbSlide>
+    <div class="picsum-img-wrapper">
+      <img
+        src="https://cdn.prod.website-files.com/605826c62e8de87de744596e/676384c5f1eae7a1e79ae8d3_67637f0be47077919bae0b79_screenshot-2024-12-18-at-72302-pm-6762d481479f6.webp"
+        class="header-image"
+        alt="Random first slide"
+      />
+    </div>
+    <div class="carousel-caption">
+      <h3>First slide label</h3>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
+}
+<div class="product-list-wrapper">
+  <h1>Trendy Products</h1>
+  <div class="row">
+    <div class="col-sm-3" *ngFor="let item of trendyProducts">
+      <div class="product-item">
+        <img
+          src="{{item.image}}"
+          alt=""
+        />
+      </div>
+      <div class="products-details">
+        <h6 class="name-head">{{item.name}}</h6>
+        <h6>{{item.price}}</h6>
+        <h6>{{item.color}}</h6>
+      </div>
+      <div class="links">
+        <a href="">View Details</a>
+        <a href="">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</div>
