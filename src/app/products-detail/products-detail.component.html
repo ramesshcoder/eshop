@@ -1,0 +1,19 @@
+<div class="product-container" *ngIf="productData">
+  <div class="product-image-section">
+    <img class="product-image" src="{{productData.image}}" alt="">
+  </div>
+  <div class="product-details-section">
+    <h1>{{productData.name}}</h1>
+    <h3>{{productData.price}}</h3>
+    <div>Color: {{productData.color}}</div>
+    <h6>Category: {{productData.category}}</h6>
+    <h6>Description: {{productData.description}}</h6>
+    <button >Add to Cart</button>
+    <button>Buy Now</button>
+    <div class="quantity-grp">
+        <button (click)="handleQuantity('minus')">-</button>
+        <input type="text" name="" id="" value="{{productQuantity}}">
+        <button (click)="handleQuantity('plus')">+</button>
+    </div>
+  </div>
+</div>

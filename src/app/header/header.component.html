@@ -9,16 +9,23 @@
   <div [ngSwitch]="menuType">
     <ul *ngSwitchCase="'default'" class="nav-links">
   
-    <a routerLink="">home</a>
-    <a routerLink="seller"> seller</a
-    ><a routerLink="login"> login</a
-    ><a routerLink="cart">cart(0)</a>
+    <a routerLink="">Home</a>
+    <a routerLink="seller"> Seller</a
+    ><a routerLink="user-auth"> Account</a
+    ><a routerLink="cart">Cart(0)</a>
+  </ul>
+  <ul *ngSwitchCase="'user'" class="nav-links">
+  
+    <a routerLink="">Home</a>
+    <a > {{userName| titlecase}}</a
+    ><a routerLink="user-auth" (click)="userLogOut()"> Logout</a
+    ><a routerLink="cart">Cart(0)</a>
   </ul>
   <ul *ngSwitchCase="'seller'" class="nav-links">
   
-    <a routerLink="seller-home">product-list</a>
-    <a routerLink="seller-add-products"> add products</a
-    ><a (click)="logout()"> logout</a
+    <a routerLink="seller-home">Product-list</a>
+    <a routerLink="seller-add-products"> Add products</a
+    ><a (click)="logout()"> Logout</a
     ><a routerLink="">{{sellerName | titlecase}}</a>
   </ul>
   </div>

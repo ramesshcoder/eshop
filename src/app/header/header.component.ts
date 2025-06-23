@@ -7,15 +7,16 @@ import { ProductsService } from '../service/products.service';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, NgIf, NgSwitch, NgSwitchCase,TitleCasePipe],
+  imports: [RouterLink, NgIf, NgSwitch, NgSwitchCase, TitleCasePipe],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   menuType: string = 'default';
   sellerName: string = '';
+  userName: string = '';
 
-  constructor(private route: Router,private product :ProductsService) {
+  constructor(private route: Router, private product: ProductsService) {
     this.route.events.subscribe((val: any) => {
       if (val instanceof NavigationEnd) {
         if (localStorage.getItem('seller') && val.url.includes('seller')) {
@@ -25,32 +26,23 @@ export class HeaderComponent {
           let sellerStore = localStorage.getItem('seller');
           let sellerData = sellerStore && JSON.parse(sellerStore); // No [0] here
           this.sellerName = sellerData?.name || ''; // Safe fallback
+        } else if (localStorage.getItem('user')) {
+          let userStore = localStorage.getItem('user');
+          let userData = userStore && JSON.parse(userStore);
+          this.userName = userData.name;
+          this.menuType = 'user';
         } else {
           this.menuType = 'default';
         }
       }
     });
   }
-
+userLogOut(){
+   localStorage.removeItem('user');
+    this.route.navigate(['user-auth']);
+}
   logout() {
     localStorage.removeItem('seller');
     this.route.navigate(['/']);
   }
- searchProducts(query: KeyboardEvent) {
-  const element = query.target as HTMLInputElement;
-  const searchTerm = element.value.trim();
-
-  if (searchTerm) {
-    this.product.searchProducts(searchTerm).subscribe({
-      next: (result) => {
-        console.log("Search result:", result);
-      },
-      error: (err) => {
-        console.error("Error fetching search results", err);
-      }
-    });
-  }
-}
-
-
 }
