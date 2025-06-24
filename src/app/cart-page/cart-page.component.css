@@ -153,4 +153,19 @@ body {
   border-top: 2px solid #ddd;
   color: #007bff;
 }
+.checkout{
+  padding: 8px 10px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 100px;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+  
+}
+.checkout:hover {
+  background-color: #d90000;
+}
 

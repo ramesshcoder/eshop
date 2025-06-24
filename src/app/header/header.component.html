@@ -1,33 +1,32 @@
 <div class="navcontainer">
   <a href="" class="logo">Eshop</a>
-  <div *ngIf="menuType==='default'" class="search">  <input
-      type="text" 
+  <div *ngIf="menuType === 'default' || 'user'" class="search">
+    <input
+      type="text"
       name="search"
       id=""
       placeholder="search products"
-    /><button>search</button></div>
+    /><button>search</button>
+  </div>
   <div [ngSwitch]="menuType">
     <ul *ngSwitchCase="'default'" class="nav-links">
-  
-    <a routerLink="">Home</a>
-    <a routerLink="seller"> Seller</a
-    ><a routerLink="user-auth"> Account</a
-    ><a routerLink="cart-page">Cart({{cartItems}})</a>
-    
-  </ul>
-  <ul *ngSwitchCase="'user'" class="nav-links">
-  
-    <a routerLink="">Home</a>
-    <a > {{userName| titlecase}}</a
-    ><a routerLink="user-auth" (click)="userLogOut()"> Logout</a
-    ><a routerLink="cart-page">Cart({{cartItems}})</a>
-  </ul>
-  <ul *ngSwitchCase="'seller'" class="nav-links">
-  
-    <a routerLink="seller-home">Product-list</a>
-    <a routerLink="seller-add-products"> Add products</a
-    ><a (click)="logout()"> Logout</a
-    ><a routerLink="">{{sellerName | titlecase}}</a>
-  </ul>
+      <a routerLink="">Home</a>
+      <a routerLink="seller"> Seller</a
+      ><a routerLink="user-auth"> Account</a
+      ><a routerLink="cart-page">Cart({{ cartItems }})</a>
+    </ul>
+    <ul *ngSwitchCase="'user'" class="nav-links">
+      <a routerLink="">Home</a>
+      <a> {{ userName | titlecase }}</a>
+      <a routerLink="my-orders">My Orders</a>
+      <a routerLink="user-auth" (click)="userLogOut()"> Logout</a
+      ><a routerLink="cart-page">Cart({{ cartItems }})</a>
+    </ul>
+    <ul *ngSwitchCase="'seller'" class="nav-links">
+      <a routerLink="seller-home">Product-list</a>
+      <a routerLink="seller-add-products"> Add products</a
+      ><a (click)="logout()"> Logout</a
+      ><a routerLink="">{{ sellerName | titlecase }}</a>
+    </ul>
   </div>
 </div>

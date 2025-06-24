@@ -12,7 +12,7 @@
 
           <span>Price: {{cart.price}}</span>
           <span>Quantiy: {{cart.quantity}}</span>
-          <button>Remove item</button>
+          <button (click)="removeToCart(cart.id)" >Remove item</button>
         </li>
         <!-- Repeat for more products -->
       </ul>
@@ -40,6 +40,7 @@
           <span>Total</span>
           <span>{{priceSummary.total}}</span>
         </li>
+        <button (click)="checkout()" class="checkout">checkout</button>
       </ul>
     </div>
   </div>

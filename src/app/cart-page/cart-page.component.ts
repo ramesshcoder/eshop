@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../service/products.service';
 import { cart, priceSummary } from '../data-type';
 import { NgFor } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -19,7 +20,7 @@ export class CartPageComponent {
     total:0
 
  }
-  constructor(private product:ProductsService){}
+  constructor(private product:ProductsService,private router :Router){}
   ngOnInit():void{
     this.product.currentCart().subscribe((result)=>{
      this.cartData=result
@@ -49,7 +50,25 @@ price +=Number(item.price*item.quantity)||0;
       
 
   })}
+  checkout(){
+    this.router.navigate(['/checkout'])
+  }
+  
+ removeToCart(cartId: string|undefined) {
+  if (cartId) {
+    this.product.removeToCart(cartId).subscribe((result) => {
+      if (result) {
+        let user = localStorage.getItem('user');
+        let userId = user && JSON.parse(user).id;
+        this.product.getCartList(userId);
+      }
+    });
+  }
+}
+
 
   }
+
+  
 
 
