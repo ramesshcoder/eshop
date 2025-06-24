@@ -10,7 +10,7 @@ export class UsersService {
 
   constructor(private http:HttpClient,private router:Router) { }
   userSignUp(user:SignUp){
-   this.http.post("http://localhost:3000/users",user,{observe:'response'}).subscribe((result)=>{
+   this.http.post(`http://localhost:3000/users`,user,{observe:'response'}).subscribe((result)=>{
     console.warn(result)
     if(result){
       localStorage.setItem('user',JSON.stringify(result.body))
@@ -22,6 +22,17 @@ export class UsersService {
     if(localStorage.getItem('user')){
       this.router.navigate(['/'])
     }
+  }
+  userLogin(data:SignUp){
+    this.http.get<SignUp[]>(`http://localhost:3000/users?=email=${data.email}&password=${
+      data.password}`).subscribe((result)=>{
+        if(result && result.length > 0){
+           localStorage.setItem('user',JSON.stringify(result[0]))
+      this.router.navigate(['/'])
+          
+        }
+      })
+
   }
 }
 

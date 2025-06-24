@@ -31,18 +31,28 @@ export class HeaderComponent {
           let userData = userStore && JSON.parse(userStore);
           this.userName = userData.name;
           this.menuType = 'user';
+          this.product.getCartList(userData.id)
         } else {
           this.menuType = 'default';
         }
       }
     });
+    let cartData=localStorage.getItem('localCart')
+    if(cartData){
+      this.cartItems=JSON.parse(cartData).length
+    }
+    this.product.cartData.subscribe((items)=>{
+      this.cartItems=items.length
+    })
   }
 userLogOut(){
    localStorage.removeItem('user');
     this.route.navigate(['user-auth']);
+    this.product.cartData.emit([])
 }
   logout() {
     localStorage.removeItem('seller');
     this.route.navigate(['/']);
   }
+  cartItems=0
 }

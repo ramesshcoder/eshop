@@ -12,14 +12,15 @@
     <a routerLink="">Home</a>
     <a routerLink="seller"> Seller</a
     ><a routerLink="user-auth"> Account</a
-    ><a routerLink="cart">Cart(0)</a>
+    ><a routerLink="cart-page">Cart({{cartItems}})</a>
+    
   </ul>
   <ul *ngSwitchCase="'user'" class="nav-links">
   
     <a routerLink="">Home</a>
     <a > {{userName| titlecase}}</a
     ><a routerLink="user-auth" (click)="userLogOut()"> Logout</a
-    ><a routerLink="cart">Cart(0)</a>
+    ><a routerLink="cart-page">Cart({{cartItems}})</a>
   </ul>
   <ul *ngSwitchCase="'seller'" class="nav-links">
   

@@ -11,6 +11,7 @@ import { SellerUpdateProductComponent } from './seller-update-product/seller-upd
 
 import { ProductsDetailComponent } from './products-detail/products-detail.component';
 import { UserAuthComponent } from './user-auth/user-auth.component';
+import { CartPageComponent } from './cart-page/cart-page.component';
 
 export const routes: Routes = [
   {
@@ -32,8 +33,7 @@ export const routes: Routes = [
   {
     path: 'update/:id',
     component: SellerUpdateProductComponent,
-    canActivate:[authGuard]
-   
+    canActivate: [authGuard],
   },
   {
     path: 'seller-home',
@@ -46,11 +46,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    component:ProductsDetailComponent,
-    path:'details/:productId'
+    component: ProductsDetailComponent,
+    path: 'details/:productId',
   },
   {
-component:UserAuthComponent,
-path:'user-auth'
-  }
+    component: UserAuthComponent,
+    path: 'user-auth',
+  },
+  { path: 'cart-page', component: CartPageComponent },
 ];
