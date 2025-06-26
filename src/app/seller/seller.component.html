@@ -1,7 +1,7 @@
 <div class="form-container">
   <div *ngIf="showLogin" class="signUp">
     <!-- signUp form  -->
-    <h1>Seller SignUp</h1>
+    <h3>Seller SignUp</h3>
     <form
       #sellerSignUp="ngForm"
       (ngSubmit)="sellerData(sellerSignUp.value)"
@@ -19,12 +19,12 @@
         name="password"
       />
       <button type="submit" [disabled]="!sellerSignUp.valid">submit</button>
-      <a class="auth-flip" (click)="openLogin()">already have account click to login</a>
+      <a class="auth-flip" (click)="openLogin()">already have account ? click to login</a>
     </form>
   </div>
   <!-- login form -->
   <div *ngIf="!showLogin" class="login">
-    <h1>Seller login</h1>
+    <h3>Seller login</h3>
     <form
       #sellerLogin="ngForm"
       (ngSubmit)="sellerLoginData(sellerLogin.value)"

@@ -1,52 +1,83 @@
+/* Base container */
 .user-auth {
-  width: 350px;
-  margin: 60px auto;
-  padding: 25px;
-  border: 1px solid #ccc;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background-color: #e5e2e2;
   border-radius: 10px;
-  background-color: #f7f7f7;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* Headings */
 .user-auth h1 {
   text-align: center;
-  font-size: 24px;
   margin-bottom: 20px;
   color: #333;
+  font-size: 26px;
 }
 
-.user-auth form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
+/* Input fields */
 .user-auth input {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  outline: none;
-}
-
-.user-auth input:focus {
-  border-color: #007bff;
-}
-
-.user-auth button {
-  padding: 10px;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
   font-size: 15px;
-  background-color: #007bff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Button */
+.user-auth button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007b5e;
   color: white;
+  font-size: 16px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
 }
 
 .user-auth button:hover {
-  background-color: #0056b3;
+  background-color: #005f49;
 }
-.anchor{
-  color: blue;
+
+/* Paragraph text and anchor */
+.user-auth p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 20px;
+  color: #555;
+}
+
+.user-auth .anchor {
+  color: #007b5e;
+  text-decoration: underline;
   cursor: pointer;
+}
+
+/* Responsive layout */
+@media screen and (max-width: 480px) {
+  .user-auth {
+    padding: 20px 15px;
+    margin: 20px;
+  }
+
+  .user-auth h1 {
+    font-size: 22px;
+  }
+
+  .user-auth input,
+  .user-auth button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .user-auth p {
+    font-size: 23px;
+  }
 }

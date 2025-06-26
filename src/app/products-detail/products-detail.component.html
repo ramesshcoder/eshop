@@ -1,4 +1,4 @@
-<div class="product-container" *ngIf="productData">
+<div  class="product-container" *ngIf="productData">
   <div class="product-image-section">
     <img class="product-image" src="{{productData.image}}" alt="">
   </div>
@@ -7,7 +7,7 @@
     <h3>{{productData.price}}/-</h3>
     <div>Color: {{productData.color |titlecase}}</div>
     <h6>Category: {{productData.category | titlecase}}</h6>
-    <h6>Description: {{productData.description}}</h6>
+    <p>Description: {{productData.description}}</p>
     <button *ngIf="!removeCart" (click)="addToCart()" >Add</button>
     <button  *ngIf="removeCart" (click)="removeToCart(productData.id)" >Remove </button>
     

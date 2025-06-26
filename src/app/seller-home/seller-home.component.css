@@ -1,25 +1,121 @@
-h1{
-    margin-top: 10px;
-    text-align: center;
+/* Container styling */
+.product-list {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
 }
-table{
-    
-    margin: 5% 15% 5%;
-    text-align: left;
-    color: black;
-    border-collapse: collapse;
 
+.product-list h1 {
+  text-align: center;
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
 }
-table td,table th{
-    border: 1px solid black;
+
+.product-list .p {
+  text-align: center;
+  color: red;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+thead {
+  background-color: #007b5e;
+  color: white;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+
+/* Image column */
+td img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Action buttons */
+td button {
+  margin-right: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007b5e;
+  color: white;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+td button:hover {
+  background-color: #005945;
+}
+
+td i.fa-trash {
+  color: red;
+  background: transparent;
+}
+
+/* Make description column wrap text */
+td:nth-child(6) {
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Responsive CSS */
+@media screen and (max-width: 768px) {
+  .product-list h1 {
+    font-size: 24px;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     padding: 10px;
-    min-width: 160px;
-}
-img{
-    height: 100px;
-    width: 100px;
-}
-button{
-    text-align: center;
-    
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex: 1;
+    padding-right: 10px;
+  }
+
+  td img {
+    width: 70px;
+    height: 70px;
+  }
 }

@@ -37,6 +37,13 @@ ngb-carousel {
   height: 250px; /* Set consistent height */
   object-fit: cover; /* Ensures image is scaled and cropped to fit */
   border-radius: 10px;
+    transition: transform 0.3s ease;
+  width: 100%;
+  height: auto;
+}
+.product-item img:hover{
+   transform: scale(1.1);
+   cursor: pointer;
 }
 
 .products-details {
