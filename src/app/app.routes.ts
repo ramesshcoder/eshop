@@ -15,6 +15,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 
+
 export const routes: Routes = [
   {
     path: '',
@@ -57,6 +58,7 @@ export const routes: Routes = [
     path:'checkout',component:CheckoutComponent
   },
   {
-    path:'my-orders',component:MyOrdersComponent
+    path:'my-orders',component:MyOrdersComponent,
+
   }
 ];

@@ -4,13 +4,13 @@
   </div>
   <div class="product-details-section">
     <h1>{{productData.name}}</h1>
-    <h3>{{productData.price}}</h3>
-    <div>Color: {{productData.color}}</div>
-    <h6>Category: {{productData.category}}</h6>
+    <h3>{{productData.price}}/-</h3>
+    <div>Color: {{productData.color |titlecase}}</div>
+    <h6>Category: {{productData.category | titlecase}}</h6>
     <h6>Description: {{productData.description}}</h6>
-    <button *ngIf="!removeCart" (click)="addToCart()" >Add to Cart</button>
-    <button  *ngIf="removeCart" (click)="removeToCart(productData.id)" >Remove from Cart</button>
-    <button>Buy Now</button>
+    <button *ngIf="!removeCart" (click)="addToCart()" >Add</button>
+    <button  *ngIf="removeCart" (click)="removeToCart(productData.id)" >Remove </button>
+    
     <div class="quantity-grp">
         <button (click)="handleQuantity('minus')">-</button>
         <input type="text" name="" id="" value="{{productQuantity}}">

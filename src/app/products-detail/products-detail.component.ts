@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../service/products.service';
 import { cart, products } from '../data-type';
-import { NgIf } from '@angular/common';
+import { NgIf, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-products-detail',
-  imports: [NgIf],
+  imports: [NgIf,TitleCasePipe],
   templateUrl: './products-detail.component.html',
   styleUrl: './products-detail.component.css',
 })

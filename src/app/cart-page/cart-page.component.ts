@@ -1,30 +1,100 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../service/products.service';
 import { cart, priceSummary } from '../data-type';
-import { NgFor } from '@angular/common';
 import { Router } from '@angular/router';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-cart-page',
-  imports: [NgFor],
   templateUrl: './cart-page.component.html',
-  styleUrl: './cart-page.component.css'
+  styleUrls: ['./cart-page.component.css'],
+  standalone: true,
+  imports: [NgFor]
 })
-export class CartPageComponent {
- cartData:cart[]|undefined
- priceSummary:priceSummary={
-  price:0,
-    discount:0,
-    tax:0,
-    delivery:0,
-    total:0
+export class CartPageComponent implements OnInit {
+  cartData: cart[] = [];
+  priceSummary: priceSummary = {
+    price: 0,
+    discount: 0,
+    tax: 0,
+    delivery: 0,
+    total: 0
+  };
 
- }
-  constructor(private product:ProductsService,private router :Router){}
-  ngOnInit():void{
-    this.product.currentCart().subscribe((result)=>{
-     this.cartData=result
-     if(!result || result.length===0){
+  constructor(private product: ProductsService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.loadCartData();
+  }
+
+  // ✅ Load cart data based on login status
+  loadCartData(): void {
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      // Logged in user: fetch cart from server
+      this.product.currentCart().subscribe(
+        (result) => {
+          this.cartData = result || [];
+          this.updatePriceSummary();
+        },
+        (error) => {
+          console.error('Failed to load backend cart:', error);
+          this.cartData = [];
+          this.updatePriceSummary();
+        }
+      );
+    } else {
+      // Guest user: fetch cart from localStorage
+      const localCart = localStorage.getItem('localCart');
+      if (localCart) {
+        this.cartData = JSON.parse(localCart);
+      } else {
+        this.cartData = [];
+      }
+      this.updatePriceSummary();
+    }
+  }
+
+  // ✅ Navigate to checkout
+  checkout(): void {
+    this.router.navigate(['/checkout']);
+  }
+
+  // ✅ Remove an item from the cart
+  removeToCart(cartId: string | undefined): void {
+    const user = localStorage.getItem('user');
+
+    if (!cartId) return;
+
+    if (user) {
+      // Logged in user: remove from backend
+      this.product.removeToCart(cartId).subscribe(
+        () => {
+          this.loadCartData();
+          const userId = JSON.parse(user).id;
+          this.product.getCartList(userId); // update other views if needed
+        },
+        (error) => {
+          console.error('Error removing item from backend cart:', error);
+        }
+      );
+    } else {
+      // Guest user: remove from localStorage
+      const localCart = localStorage.getItem('localCart');
+      if (localCart) {
+        let cartItems = JSON.parse(localCart);
+        cartItems = cartItems.filter((item: cart) => item.id !== cartId);
+        localStorage.setItem('localCart', JSON.stringify(cartItems));
+        this.cartData = cartItems;
+        this.updatePriceSummary();
+      }
+    }
+  }
+
+  // ✅ Calculate and update price summary
+  updatePriceSummary(): void {
+    if (!this.cartData || this.cartData.length === 0) {
       this.priceSummary = {
         price: 0,
         discount: 0,
@@ -32,43 +102,30 @@ export class CartPageComponent {
         delivery: 0,
         total: 0
       };
-return;
-     };
-      let price=0;
-      result.forEach((item)=>{
-        if(item.quantity){
-price +=Number(item.price*item.quantity)||0;
-        }
-        
-      });
-      this.priceSummary.price=price;
-      this.priceSummary.discount=price/10;
-      this.priceSummary.tax=price/10;
-      this.priceSummary.delivery=100;
-      this.priceSummary.total=price+(price/10)+100-(price/10)
-      console.warn(this.priceSummary);
-      
+      return;
+    }
 
-  })}
-  checkout(){
-    this.router.navigate(['/checkout'])
-  }
-  
- removeToCart(cartId: string|undefined) {
-  if (cartId) {
-    this.product.removeToCart(cartId).subscribe((result) => {
-      if (result) {
-        let user = localStorage.getItem('user');
-        let userId = user && JSON.parse(user).id;
-        this.product.getCartList(userId);
+    let price = 0;
+
+    this.cartData.forEach((item) => {
+      const itemPrice = Number(item.price);
+      const itemQuantity = Number(item.quantity || 1); // default quantity 1
+      if (!isNaN(itemPrice) && !isNaN(itemQuantity)) {
+        price += itemPrice * itemQuantity;
       }
     });
+
+    const tax = price * 0.1;
+    const discount = price * 0.1;
+    const delivery = 100;
+    const total = price + tax + delivery - discount;
+
+    this.priceSummary = {
+      price,
+      tax,
+      discount,
+      delivery,
+      total
+    };
   }
 }
-
-
-  }
-
-  
-
-

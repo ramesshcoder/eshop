@@ -1,32 +1,41 @@
 <div class="navcontainer">
-  <a href="" class="logo">Eshop</a>
-  <div *ngIf="menuType === 'default' || 'user'" class="search">
-    <input
-      type="text"
-      name="search"
-      id=""
-      placeholder="search products"
-    /><button>search</button>
+  <a href="/" class="logo">Eshop</a>
+
+  
+
+  <!-- Search Bar -->
+  <div *ngIf="menuType === 'default' || menuType === 'user'" class="search">
+    <input type="text" placeholder="Search products" />
+    <button>Search</button>
   </div>
-  <div [ngSwitch]="menuType">
+  <div class="hamburger" (click)="menuOpen = !menuOpen">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+  
+
+  <!-- Nav Links -->
+  <div [ngSwitch]="menuType" [class.nav-open]="menuOpen" class="nav-wrapper">
     <ul *ngSwitchCase="'default'" class="nav-links">
       <a routerLink="">Home</a>
-      <a routerLink="seller"> Seller</a
-      ><a routerLink="user-auth"> Account</a
-      ><a routerLink="cart-page">Cart({{ cartItems }})</a>
+      <a routerLink="seller">Seller</a>
+      <a routerLink="user-auth">Account</a>
+      <a routerLink="cart-page">Cart({{ cartItems }})</a>
     </ul>
     <ul *ngSwitchCase="'user'" class="nav-links">
       <a routerLink="">Home</a>
-      <a> {{ userName | titlecase }}</a>
+      <a>{{ userName | titlecase }}</a>
       <a routerLink="my-orders">My Orders</a>
-      <a routerLink="user-auth" (click)="userLogOut()"> Logout</a
-      ><a routerLink="cart-page">Cart({{ cartItems }})</a>
+      <a routerLink="user-auth" (click)="userLogOut()">Logout</a>
+      <a routerLink="cart-page">Cart({{ cartItems }})</a>
     </ul>
     <ul *ngSwitchCase="'seller'" class="nav-links">
-      <a routerLink="seller-home">Product-list</a>
-      <a routerLink="seller-add-products"> Add products</a
-      ><a (click)="logout()"> Logout</a
-      ><a routerLink="">{{ sellerName | titlecase }}</a>
+      <a routerLink="seller-home">Product List</a>
+      <a routerLink="seller-add-products">Add Products</a>
+      <a (click)="logout()">Logout</a>
+      <a>{{ sellerName | titlecase }}</a>
     </ul>
   </div>
 </div>
