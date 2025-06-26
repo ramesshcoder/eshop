@@ -1,7 +1,9 @@
 /* Base container */
 .user-auth {
   max-width: 400px;
-  margin: 40px auto;
+  
+  margin:80px 480px 300px;
+ 
   padding: 30px 25px;
   background-color: #e5e2e2;
   border-radius: 10px;
@@ -65,6 +67,8 @@
   .user-auth {
     padding: 20px 15px;
     margin: 20px;
+    margin-top: 100px;
+    margin-bottom: 300px;
   }
 
   .user-auth h1 {

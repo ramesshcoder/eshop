@@ -67,7 +67,7 @@ form button:disabled {
 /* Responsive design */
 @media screen and (max-width: 480px) {
   .form-container {
-    margin: 20px;
+    margin: 40px;
     margin-bottom: 200px;
     padding: 20px 15px;
   }
