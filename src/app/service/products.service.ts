@@ -35,7 +35,7 @@ export class ProductsService {
   }
 
   trendyProducts() {
-    return this.http.get<products[]>('http://localhost:3000/products?_limit=8');
+    return this.http.get<products[]>('http://localhost:3000/products?_limit=50');
   }
 
   localAddToCart(data: products) {
